@@ -4,11 +4,11 @@ Compatibility: Python 3.8.5
 
 Libraries: numpy, pyplot, pandas, sklearn, nltk
 
-# Machine learning approach
+## Machine learning approach
 
 The given problem was solved by using multiple iterations of the ‘Bag of Words’ model alongside K-means clustering. The FinalResult.csv file, incudes the original dataset, plus two new columns, Predicted Product Category and Predicted Product Name. 
 
-# The 4 Python scripts
+## The 4 Python scripts
 
 The solution consists of 4 different python (.py) scripts
 
@@ -20,4 +20,4 @@ The solution consists of 4 different python (.py) scripts
 
 4)	[FinalResults.py](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/FinalResults.py): Creates a final .csv file that is equal to the original dataset plus two columns, representing the Predicted Product Categories and Predicted Product Names.
 
-# Identifying trendes in the post-pocessed dataset, respones to 'customers'
+## Identifying trendes in the post-pocessed dataset, respones to 'customers'

@@ -1,4 +1,4 @@
-## Slice project, Georios Etsias January 2021, Part 1: Data pre-processing 
+## Georios Etsias January 2021, Part 1: Data pre-processing 
 
 ## Importing the libraries
 import matplotlib.pyplot as plt

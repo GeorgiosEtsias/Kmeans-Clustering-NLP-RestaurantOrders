@@ -1,4 +1,4 @@
-## Slice project, Georios Etsias January 2021, Part 3: pizza products 
+## Georios Etsias January 2021, Part 3: pizza products 
 
 ## Importing the libraries
 import numpy as np

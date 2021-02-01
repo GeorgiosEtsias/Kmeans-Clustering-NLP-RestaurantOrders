@@ -34,7 +34,7 @@ The solution consists of 4 different python (.py) scripts
 
 Figure 1: Distribution of various styles of pizzas.
 
-![alt text]()
+![alt text](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/ProjectFigures/Figure2.png)
 
 Figure 2: Identifying the actual percentage of cheese pizzas.
 
@@ -55,29 +55,29 @@ Table 1: Most popular non-pizza products per identified product category, arrang
 
 Except for individual pizza slices, average pizza prices did not fluctuate that much, raging between 10 $ and 20$ (Figure 4). When examining price range, i.e. the difference between the highest and lowest recorded pizza prices (apart from the most popular product, cheese pizza), the biggest variations were observed in specialty pizzas with a lot of ingredients such as the meat lover and veggie pizzas (Figure5). In Figure 6 the correlation between the price range and the average price for each pizza style was identified. With the exception of cheese pizzas, for all other products the price range was never bigger than double the average product value. This indicates that cheese pizza has a relatively greater profit margin.
 
-![alt text]()
+![alt text](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/ProjectFigures/Figure4.png)
 
 Figure 4: Average prices of the 10 most common pizza products.
 
-![alt text]()
+![alt text](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/ProjectFigures/Figure5.png)
 
 Figure 5: Price range distribution of the 10 most common pizza products.
 
-![alt text]()
+![alt text](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/ProjectFigures/Figure6.png)
 
 Figure 6: Price range divided by average product category price for the 10 most common pizza products.
 
 Regarding the non-pizza products, average price and price range distribution are presented in Figures 7 and 8 respectively. Taking into account the correlation between these two variables, it was established that vary little price variation exists on beverages, sandwiches and subs, while the profit margins are much greater for appetizers and salads. 
 
-![alt text]()
+![alt text](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/ProjectFigures/Figure7.png)
 
 Figure 7: Average prices of the 10 most common pizza products.
 
-![alt text]()
+![alt text](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/ProjectFigures/Figure8.png)
 
 Figure 8: Price range distribution for the 10 most common non-pizza product categories.
 
-![alt text]()
+![alt text](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/ProjectFigures/Figure9.png)
 
 Figure 9: Price range divided by average product category price for the 10 most common non-pizza product categories.
 

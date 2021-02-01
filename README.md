@@ -48,6 +48,9 @@ In general, the distributions of orders, regarding both the pizza and non-pizza 
 
 Table 1: Most popular non-pizza products per identified product category, arranged in alphabetical order.
 
+
+
+
 ### Identifying price related trends 
 
 Except for individual pizza slices, average pizza prices did not fluctuate that much, raging between 10 $ and 20$ (Figure 4). When examining price range, i.e. the difference between the highest and lowest recorded pizza prices (apart from the most popular product, cheese pizza), the biggest variations were observed in specialty pizzas with a lot of ingredients such as the meat lover and veggie pizzas (Figure5). In Figure 6 the correlation between the price range and the average price for each pizza style was identified. With the exception of cheese pizzas, for all other products the price range was never bigger than double the average product value. This indicates that cheese pizza has a relatively greater profit margin.

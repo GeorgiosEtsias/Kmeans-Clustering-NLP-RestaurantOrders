@@ -1,4 +1,4 @@
-## Slice project, Georios Etsias January 2021, Part 4: Final Results
+## Georios Etsias January 2021, Part 4: Final Results
 
 # Importing pandas
 import pandas as pd

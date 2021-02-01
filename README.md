@@ -1,7 +1,9 @@
 # NLP-Clustering-RestaurantOrders
-Project for Slice
-Compatibility: Python 3.8.5, libraries: numpy, matplotlib.pyplot, pandas, sklearn, nltk
-Comments on the Python scripts
+
+Compatibility: Python 3.8.5 
+libraries: numpy, matplotlib.pyplot, pandas, sklearn, nltk
+
+# Comments on the Python scripts
 The given problem was solved by using multiple iterations of the ‘Bag of Words’ model alongside K-means clustering. The FinalResult.csv file, incudes the original dataset, plus two new columns, Predicted Product Category and Predicted Product Name. 
 The solution consists of 4 different python (.py) scripts
 1)	DataPreProcessing.py: product_name and product_category_name columns of the original .csv file are pre-processed using nltk. PorterStemmer. Then the orders are manually split into pizza and non-pizza products, and 2 .plk files are created.

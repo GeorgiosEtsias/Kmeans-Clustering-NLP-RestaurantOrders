@@ -48,8 +48,7 @@ In general, the distributions of orders, regarding both the pizza and non-pizza 
 
 Table 1: Most popular non-pizza products per identified product category, arranged in alphabetical order.
 
-
-
+![alt text](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/ProjectFigures/Table1.png)
 
 ### Identifying price related trends 
 

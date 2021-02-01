@@ -4,7 +4,7 @@ Compatibility: Python 3.8.5
 
 Libraries: numpy, pyplot, pandas, sklearn, nltk
 
-## The dataset
+## The [dataset](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/orderItems.csv)
 
 A dataset including 16.500 food orders,  from 100 different pizza shops,  during June – November 2019, was analysed. The orders were categorized aprropiertly and conclusions were derived on the most popular products and their price distribution.
 

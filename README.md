@@ -30,11 +30,17 @@ The solution consists of 4 different python (.py) scripts
 
 30.8 % of the products that were ordered were pizzas. These pizza orders were distributed according to their corresponding ‘style’ as seen in Figure 1. Cheese pizza was by far the most popular product, constituting 32.5 % of the total orders.  If the different ways in which cheese pizza was represented in the dataset, such as ‘thin crust cheese pizza’ or ‘traditional NY cheese pizza’, are taken into account, then over 46 %  (Figure 2)of the total pizzas consumed were cheese pizzas. 
 
+![alt text](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/ProjectFigures/Figure1.png)
+
 Figure 1: Distribution of various styles of pizzas.
+
+![alt text]()
 
 Figure 2: Identifying the actual percentage of cheese pizzas.
 
 The remaining 69.2 % of the orders were classified into 30 categories, as seen in Figure 3. Of these categories, appetizers were the most common products (18.22 %). An analysis of the individual products in each one of these 30 categories, was conducted in order to identify the most popular non-pizza product for each one. The results can be found on Table 1. 
+
+![alt text](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/ProjectFigures/Figure3.png)
 
 Figure 3: Distribution of non-pizza products in categories.
 
@@ -46,17 +52,29 @@ Table 1: Most popular non-pizza products per identified product category, arrang
 
 Except for individual pizza slices, average pizza prices did not fluctuate that much, raging between 10 $ and 20$ (Figure 4). When examining price range, i.e. the difference between the highest and lowest recorded pizza prices (apart from the most popular product, cheese pizza), the biggest variations were observed in specialty pizzas with a lot of ingredients such as the meat lover and veggie pizzas (Figure5). In Figure 6 the correlation between the price range and the average price for each pizza style was identified. With the exception of cheese pizzas, for all other products the price range was never bigger than double the average product value. This indicates that cheese pizza has a relatively greater profit margin.
 
+![alt text]()
+
 Figure 4: Average prices of the 10 most common pizza products.
 
+![alt text]()
+
 Figure 5: Price range distribution of the 10 most common pizza products.
+
+![alt text]()
 
 Figure 6: Price range divided by average product category price for the 10 most common pizza products.
 
 Regarding the non-pizza products, average price and price range distribution are presented in Figures 7 and 8 respectively. Taking into account the correlation between these two variables, it was established that vary little price variation exists on beverages, sandwiches and subs, while the profit margins are much greater for appetizers and salads. 
 
+![alt text]()
+
 Figure 7: Average prices of the 10 most common pizza products.
 
+![alt text]()
+
 Figure 8: Price range distribution for the 10 most common non-pizza product categories.
+
+![alt text]()
 
 Figure 9: Price range divided by average product category price for the 10 most common non-pizza product categories.
 

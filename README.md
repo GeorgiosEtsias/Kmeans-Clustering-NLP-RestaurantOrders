@@ -20,4 +20,4 @@ The solution consists of 4 different python (.py) scripts
 
 4)	[FinalResults.py](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/FinalResults.py): Creates a final .csv file that is equal to the original dataset plus two columns, representing the Predicted Product Categories and Predicted Product Names.
 
-## Identifying trendes in the post-pocessed dataset, respones to 'customers'
+## Identifying trends in the post-pocessed dataset, respones to 'customers'

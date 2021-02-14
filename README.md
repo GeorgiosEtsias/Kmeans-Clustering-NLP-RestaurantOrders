@@ -78,6 +78,6 @@ Figure 8: Price range distribution for the 10 most common non-pizza product cate
 
 ![alt text](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/ProjectFigures/Figure9.png)
 
-Figure 9: Price range divided by average product category price for the 10 most common non-pizza product categories..
+Figure 9: Price range divided by average product category price for the 10 most common non-pizza product categories.
 
 

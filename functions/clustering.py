@@ -4,7 +4,7 @@ from sklearn.cluster import KMeans
 from sklearn.feature_extraction.text import CountVectorizer
 
 #import custom functions
-from functions.plotting import plot_cluster_pie_chart, plot_cluster_pie_chart2
+from functions.plotting import matplotlib_pie_chart, plotly_pie_chart
 
 class Clustering_functions():
     '''
@@ -12,7 +12,7 @@ class Clustering_functions():
     K-menas clustering in the main script 
     '''
     def complete_clustering(self, original_dataset, target_column, nclusters,\
-        max_features, plot_title, predicted_attribute_name, plotting_package):
+        max_features, plot_title, predicted_attribute_name, plotting_package, export_graph):
         '''
         Function includes al the necessary steps for succesfully coducting
         K-means clustering
@@ -38,9 +38,9 @@ class Clustering_functions():
 
         # 6. Visualize the data
         if plotting_package == 'matplotlib':
-            fig = plot_cluster_pie_chart(clusternames, product_distribution[:,2], plot_title)
+            fig = matplotlib_pie_chart(clusternames, product_distribution[:,2], plot_title, export_graph)
         elif plotting_package == 'plotly':
-            fig = plot_cluster_pie_chart2(clusternames, product_distribution[:,2], plot_title)
+            fig = plotly_pie_chart(clusternames, product_distribution[:,2], plot_title, export_graph)
               
         # 7. Adding the results of this round of clustering to the original dataframe
         predicted_attribute = []

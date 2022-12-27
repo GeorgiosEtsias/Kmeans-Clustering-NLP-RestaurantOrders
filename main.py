@@ -8,7 +8,7 @@ import pandas as pd
 
 # Import custom functions
 from functions.data_preprocess import stopwords_n_stemming  
-from functions.plotting import plot_cluster_pie_chart
+from functions.plotting import matplotlib_pie_chart
 from functions.clustering import Clustering_functions 
 
 # Instantiate class
@@ -30,7 +30,14 @@ dataset.insert(0, "original index", indexx, True)
 dataset.insert(1, "product_category_name", corpuscat, True)
 dataset.insert(2, "product_name", corpusname, True)
 
-## Step 2: Split pizzas from the rest of the products(using category)
+## Step 2: define plotting prameters
+# define the plotting package
+plotting_package = 'matplotlib'
+
+# define if figures will be exported locally
+export_graph = True
+
+## Step 3: Split pizzas from the rest of the products(using category)
 pizza_df = dataset[dataset['product_category_name'].str.contains(r'pizza')].copy()
 nonpizza_df = dataset[~dataset['product_category_name'].str.contains(r'pizza')].copy()
 
@@ -38,37 +45,34 @@ nonpizza_df = dataset[~dataset['product_category_name'].str.contains(r'pizza')].
 labels = 'pizzas', 'non-pizza products'
 plot_title = 'pizza - non-pizza product distribution'
 sizes = [(len(pizza_df)/len(dataset))*100, (len(nonpizza_df)/len(dataset))*100]
-fig = plot_cluster_pie_chart(labels, sizes, plot_title)
+fig = matplotlib_pie_chart(labels, sizes, plot_title, export_graph)
 
-## Step 3: Define the clustering variables
+## Step 4: Define the clustering variables
 nclusters_pizza = 30 # the number of clusters
 nclusters_cat_nopizza, nclusters_name_nopizza = 30, 15 # the number of clusters
 max_features = 50 # the maximum amount of features for the Bag of Words
 
-# define the plotting package
-plotting_package = 'matplotlib'
-
-## Step 4: Pizza clustering
+## Step 5: Pizza clustering
 # Conduct K-means clustering based on product category
 print('K-means clustering: pizza products, by product-category')
 cat_y_kmeans, cat_clusternames, pizza_categories_df = clf.complete_clustering(pizza_df, 1,\
-     nclusters_pizza, max_features, 'Initial pizza categories', 'predicted_category', plotting_package)
+     nclusters_pizza, max_features, 'Initial pizza categories', 'predicted_category', plotting_package, export_graph)
 
 # Conduct K-means clustering based on product name
 print('K-means clustering: pizza products, by product-name')
 name_y_kmeans, name_clusternames, pizza_names_df = clf.complete_clustering(pizza_df, 2,\
-     nclusters_pizza, max_features, 'Pizza products', 'predicted_name', plotting_package)
+     nclusters_pizza, max_features, 'Pizza products', 'predicted_name', plotting_package, export_graph)
 
 # Update the pizza dataframe
 pizza_df.insert(4, 'predicted_category', pizza_categories_df['predicted_category'])
 pizza_df.insert(5, 'predicted_name', pizza_names_df['predicted_name'])
 
-## Step 5: Non-pizza clustering
+## Step 6: Non-pizza clustering
 
 #Conduct K-means clustering on product category
 print('K-means clustering: non-pizza products, by product-category')
 cat_y_kmeans, cat_clusternames, nonpizza_categories_df = clf.complete_clustering(nonpizza_df, 1,\
-     nclusters_cat_nopizza, max_features, 'Initial nonpizza categories', 'predicted_category', plotting_package)
+     nclusters_cat_nopizza, max_features, 'Initial nonpizza categories', 'predicted_category', plotting_package, export_graph)
     
 # Update the nonpizza dataframe
 nonpizza_df.insert(4, 'predicted_category', nonpizza_categories_df['predicted_category'])
@@ -83,14 +87,14 @@ for jj in range(nclusters_cat_nopizza):
        
     # Conduct K-means clustering
     name_y_kmeans, name_clusternames, target_product_names = clf.complete_clustering(target_product_cat, 2,\
-                 nclusters_name_nopizza, max_features, cat_clusternames[jj], 'predicted_name', plotting_package)
+                 nclusters_name_nopizza, max_features, cat_clusternames[jj], 'predicted_name', plotting_package, export_graph)
     
     # Update the nonpizza dataframe
     nonpizza_df.update(target_product_names) 
     
     del target_product_cat, name_y_kmeans, name_clusternames, target_product_names
 
-## Step 6: Merge pizza and nonpizza results in the orginaldataset
+## Step 7: Merge pizza and nonpizza results in the orginaldataset
 final_df = original_dataset.copy()
 final_df.insert(12, 'predicted_category', '')
 final_df.insert(13, 'predicted_name', '')

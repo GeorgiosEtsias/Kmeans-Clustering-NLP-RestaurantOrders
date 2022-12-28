@@ -1,4 +1,4 @@
-# K-means clustering of products from 100 NYC pizza-place menus
+# K-means clustering of products from 100 NYC pizzerias
 
 ![alt text](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/ProjectFigures/nyc_pizza.png)
 

@@ -15,15 +15,15 @@ Libraries: numpy, pyplot, pandas, sklearn, nltk, plotly, matplolib
 
 - [Source-code brealdown](#source-code-breakdown)
 
-     --[main.py and main_notebook.ipynb](#mainpy-and-main_notebookipynb-scripts)
+     [main.py and main_notebook.ipynb](#mainpy-and-main_notebookipynb-scripts)
      
-     --[Python scripts in functions/ directory](#python-scripts-in-functions-directory)
+     [Python scripts in the 'functions/' directory](#python-scripts-in-functions-directory)
 
 - [Trends in the post-pocessed dataset](#trends-in-the-post-pocessed-dataset)
 
-     --[Identifying the most popular products / clustering results](#identifying-the-most-popular-products--clustering-results)
+     [Identifying the most popular products / clustering results](#identifying-the-most-popular-products--clustering-results)
      
-     --[Identifying price related trends](#identifying-price-related-trends)
+     [Identifying price related trends](#identifying-price-related-trends)
 
 ## Repository structure
 ```
@@ -90,7 +90,9 @@ fig = plotly_pie_chart(labels, sizes, plot_title, export_graph)
 ```
 
 4) conduct the actual clustering in pizza and non pizza products based on product category and name
+
 #### pizza clustering
+Two rounds of clustering were conducted, one using the product-name and the other using the product-category column.
 
 ```python
 # Conduct K-means clustering based on product category
@@ -101,8 +103,13 @@ cat_y_kmeans, cat_clusternames, pizza_categories_df = clf.complete_clustering(pi
 print('K-means clustering: pizza products, by product-name')
 name_y_kmeans, name_clusternames, pizza_names_df = clf.complete_clustering(pizza_df, 2,
                  nclusters_pizza, max_features, 'Pizza products', 'predicted_name', plotting_package, export_graph)```
+
 ```
+
 #### non-pizza clustering
+
+For the non-pizza products K-means clustering was conducted using the product_type_name. Then for the products in each initial cluster, clustering is applied again using the data in the product_name column. The results of each clustering are presented using pie charts. In total 30 product types where identified, with 15 different products for each type, resulting in the identification of 450 different non-pizza product names. 
+
 ```python
 #Conduct K-means clustering on product category
 print('K-means clustering: non-pizza products, by product-category')
@@ -133,7 +140,8 @@ for jj in range(nclusters_cat_nopizza):
 
 The solution consists of 3 different python (.py) scripts
 
-1)	[clustering.py](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/functions/clustering.py): includes a method-only class called **Clustering_functions** that conduct k-means clustering for a given dataset, and return the extracted clusters and the corresonding cluster names.
+#### [clustering.py](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/functions/clustering.py): 
+includes a method-only class called **Clustering_functions** that conduct k-means clustering for a given dataset, and return the extracted clusters and the corresonding cluster names.
 
 #### Clustering_functions, class layout 
 ```python
@@ -187,9 +195,10 @@ The solution consists of 3 different python (.py) scripts
 
 ```
  
-2)	[data_preprocess.py](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/functions/data_preprocess.py): Uses the nonpizza.plk file. K-means clustering was conducted using the product_type_name. Then for the products in each initial cluster, clustering is applied again using the data in the product_name column. The results of each clustering are presented using pie charts. In total 30 product types where identified, with 15 different products for each type, resulting in the identification of 450 different non-pizza product names. The script exports the AnalysisNonPizza.csv file, which includes the product distribution per product category, alongside their average price and price range.
+#### [data_preprocess.py](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/functions/data_preprocess.py): 
+Removes **stopwords** and conducts **stemming** in a given dataset using the **nltk** package.
 
-3)	[plotting.py](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/functions/plotting.py): 
+#### [plotting.py](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/functions/plotting.py): 
 Scipt includes 2 finctions: **matplotlib_pie_chart** and **plotly_pie_chart** that create pie charts using the **maplotlib** and **plotly** python packages respectively.
 
 ```python
@@ -225,14 +234,7 @@ def plotly_pie_chart(clusternames, product_distribution, plot_title, export_grap
     
     return fig
 ```
-Two additional functions **export_html** **export_png** export the plots lpcaly as **.html** and **.png**.
-
-
-Conducts a similar analysis using the pizza.plk file. Clustering is conducted only 2 times, once for the product_type_name (30 clusters) and once for the product_name (45 clusters). This script generates similar outputs with the previous NonPizzaClusterring.py. 
-
-
-
-4)	[FinalResults.py](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/FinalResults.py): Creates a final .csv file that is equal to the original dataset plus two columns, representing the Predicted Product Categories and Predicted Product Names.
+Two additional functions **export_html** **export_png** export the plots localy as **.html** and **.png**.
 
 ## Trends in the post-pocessed dataset
 
@@ -277,7 +279,6 @@ Figure 5: Price range distribution of the 10 most common pizza products.
 Figure 6: Price range divided by average product category price for the 10 most common pizza products.
 
 Regarding the non-pizza products, average price and price range distribution are presented in Figures 7 and 8 respectively. Taking into account the correlation between these two variables, it was established that vary little price variation exists on beverages, sandwiches and subs, while the profit margins are much greater for appetizers and salads. 
-
 ![alt text](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/ProjectFigures/Figure7.png)
 
 Figure 7: Average prices of the 10 most common pizza products.

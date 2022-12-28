@@ -19,21 +19,21 @@ class Clustering_functions():
         '''
         dataset = original_dataset.iloc[:,target_column].values
 
-        # 1. Create the Bag of Words for nonpizza products
+        # 1. Create the Bag of Words for the given dataset
         cv = CountVectorizer(max_features = max_features)
         BoW = cv.fit_transform(dataset).toarray() 
   
         # 2. Calculate the minimum % of products that will be classified as various
         self.products_as_various(dataset, BoW)
 
-        # 3. Conduct clustering according to category
+        # 3. Conduct clustering 
         kmeans, y_kmeans = self.conduct_clustering(BoW, nclusters)
 
         # 4. Automatic cluster name generation 
         cluster_radius = 0.6 #Pick a cluster radius value
         clusternames = self.automatic_cluster_name(cv, kmeans, nclusters, max_features, cluster_radius)
 
-        # 5. Calculate the prder distribution per cluster5     
+        # 5. Calculate the order distribution per cluster    
         product_distribution = self.orders_per_cluster(dataset, nclusters, y_kmeans, clusternames) 
 
         # 6. Visualize the data

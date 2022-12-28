@@ -16,7 +16,7 @@ clf = Clustering_functions()
 
 ## Step1: data preprocess
 # Read original dataset
-original_dataset = pd.read_csv('orderItems.csv')
+original_dataset = pd.read_csv('data/orderItems.csv')
 # Get product_category and product name
 testset = original_dataset.iloc[0:len(original_dataset), [7,11]].values
 

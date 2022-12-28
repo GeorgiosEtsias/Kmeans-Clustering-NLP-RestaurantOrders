@@ -89,8 +89,6 @@ sizes = [(len(pizza_df)/len(dataset))*100, (len(nonpizza_df)/len(dataset))*100]
 fig = plotly_pie_chart(labels, sizes, plot_title, export_graph)
 ```
 
-4) conduct the actual clustering in pizza and non pizza products based on product category and name
-
 #### pizza clustering
 Two rounds of clustering were conducted, one using the product-name and the other using the product-category column.
 

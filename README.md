@@ -1,30 +1,179 @@
-# NLP-Clustering-RestaurantOrders
+# K-means clustering of products from 100 NYC pizza-place menus
+
+![alt text](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/ProjectFigures/nyc_pizza.png)
 
 Compatibility: Python 3.8.5 
 
-Libraries: numpy, pyplot, pandas, sklearn, nltk
+Libraries: numpy, pyplot, pandas, sklearn, nltk, plotly, matplolib
 
-## The [dataset](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/orderItems.csv)
+## Table of contents
+- [Repository structure](#repository-structure)
 
-A dataset including 16.500 food orders,  from 100 different pizza shops,  during June – November 2019, was analysed. The orders were categorized aprropiertly and conclusions were derived on the most popular products and their price distribution.
+- [The dataset](#the-dataset)
+
+- [Machine learning approach](#machine-learning-approach)
+
+- [Source-code brealdown](#source-code-breakdown)
+
+- [Trends in the post-pocessed dataset](#trends-in-the-post-pocessed-dataset)
+
+## Repository structure
+```
+┌── ProjectFigures/
+│── data/
+│ └── orderItems.csv
+│── functions/
+│ │── clustering.py
+│ │── data_preprocess.py
+│ └── plotting.py
+│── html_figures/
+│── python_environment_req/
+│ │──  myenv.yml
+│ └── requirements.txt
+│── .gitattributes
+│── README.md
+│── main.py 
+└── main_notebook.ipynb
+```
+
+## The [dataset](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/data//orderItems.csv)
+
+- A dataset including **16.500 food orders**,  from **100 different pizza shops**,  during June – November 2019, was analysed. 
+- There are two columns of interest **product category** and **product name**. K-means clustering of the products was conducted using the data in both columns.
 
 ## Machine learning approach
 
-The given problem was solved by using multiple iterations of the ‘Bag of Words’ model alongside K-means clustering. The FinalResult.csv file, incudes the original dataset, plus two new columns, Predicted Product Category and Predicted Product Name. 
+- The given problem was solved by using multiple iterations of the **‘Bag of Words’** model alongside **the scikit-learn K-means clustering**. The FinalResult.csv file, incudes the original dataset, plus two new columns, Predicted Product Category and Predicted Product Name. 
+- The orders were categorized aprropiertly, and 2 new columns were created called **Predicted Product Category** and **Predicted Product Name**.
 
-## The 4 Python scripts
+## Source-code breakdown
+### [main.py](https://github.com/GeorgiosEtsias/Kmeans-Clustering-NLP-RestaurantOrders/blob/main/main.py) and [main_notebook.ipynb](https://github.com/GeorgiosEtsias/Kmeans-Clustering-NLP-RestaurantOrders/blob/main/main_notebook.ipynb) scripts
+1) The data .csv is read as a pandas dataframe.
+2) The **product_name** and **product_category_name** columns of the dataframe are pre-processed using nltk. PorterStemmer.
+3) A finalised dataframe with 4 coluns are created.
 
-The solution consists of 4 different python (.py) scripts
+```python
+# Read original dataset
+original_dataset = pd.read_csv('data/orderItems.csv')
+# Get product_category and product name
+testset = original_dataset.iloc[0:len(original_dataset), [7,11]].values
 
-1)	[DataPreProcessing.py](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/DataPreProcessing.py): product_name and product_category_name columns of the original .csv file are pre-processed using nltk. PorterStemmer. Then the orders are manually split into pizza and non-pizza products, and 2 .plk files are created.
+corpusname = stopwords_n_stemming(testset[:,0])
+corpuscat = stopwords_n_stemming(testset[:,1])
 
-2)	[NonPizzaClusterring.py](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/NonPizzaClustering.py): Uses the nonpizza.plk file. K-means clustering was conducted using the product_type_name. Then for the products in each initial cluster, clustering is applied again using the data in the product_name column. The results of each clustering are presented using pie charts. In total 30 product types where identified, with 15 different products for each type, resulting in the identification of 450 different non-pizza product names. The script exports the AnalysisNonPizza.csv file, which includes the product distribution per product category, alongside their average price and price range.
+# Creating a pd DataFrame with original index, product category, name and price
+dataset = original_dataset.iloc[0:len(testset), [9]]
+indexx=list(range(0, len(testset)))
+dataset.insert(0, "original index", indexx, True)
+dataset.insert(1, "product_category_name", corpuscat, True)
+dataset.insert(2, "product_name", corpusname, True)
+```
+5) Then the orders are manually split into pizza and non-pizza products,  and a pie chart showing this distribution is created
 
-3)	[PizzaClustering.py](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/PizzaClustering.py): Conducts a similar analysis using the pizza.plk file. Clustering is conducted only 2 times, once for the product_type_name (30 clusters) and once for the product_name (45 clusters). This script generates similar outputs with the previous NonPizzaClusterring.py. 
+```python
+pizza_df = dataset[dataset['product_category_name'].str.contains(r'pizza')].copy()
+nonpizza_df = dataset[~dataset['product_category_name'].str.contains(r'pizza')].copy()
+
+# create a pizza - non pizza pie chart
+labels = 'pizzas', 'non-pizza products'
+plot_title = 'pizza - non-pizza product distribution'
+sizes = [(len(pizza_df)/len(dataset))*100, (len(nonpizza_df)/len(dataset))*100]
+fig = plotly_pie_chart(labels, sizes, plot_title, export_graph)
+```
+
+4) conduct the actual clustering in pizza and non pizza products based on product category and name
+#### pizza clustering
+
+```python
+# Conduct K-means clustering based on product category
+print('K-means clustering: pizza products, by product-category')
+cat_y_kmeans, cat_clusternames, pizza_categories_df = clf.complete_clustering(pizza_df, 1,\
+     nclusters_pizza, max_features, 'Initial pizza categories', 'predicted_category', plotting_package, export_graph)
+# Conduct K-means clustering based on product name
+print('K-means clustering: pizza products, by product-name')
+name_y_kmeans, name_clusternames, pizza_names_df = clf.complete_clustering(pizza_df, 2,
+                 nclusters_pizza, max_features, 'Pizza products', 'predicted_name', plotting_package, export_graph)```
+```
+#### non-pizza clustering
+```python
+#Conduct K-means clustering on product category
+print('K-means clustering: non-pizza products, by product-category')
+cat_y_kmeans, cat_clusternames, nonpizza_categories_df = clf.complete_clustering(nonpizza_df, 1,\
+     nclusters_cat_nopizza, max_features, 'Initial nonpizza categories', 'predicted_category', plotting_package, export_graph)
+    
+# Update the nonpizza dataframe
+nonpizza_df.insert(4, 'predicted_category', nonpizza_categories_df['predicted_category'])
+
+# Conduct K-means clustering based on product name
+nonpizza_df.insert(5, 'predicted_name', '') # create an empty column to be updated
+for jj in range(nclusters_cat_nopizza):
+    print('K-means clustering: ' + cat_clusternames[jj] + ' products, by product-name')
+    
+    # Get the data sub-set
+    target_product_cat = nonpizza_df[nonpizza_df['predicted_category'] == cat_clusternames[jj]].copy()
+       
+    # Conduct K-means clustering
+    name_y_kmeans, name_clusternames, target_product_names = clf.complete_clustering(target_product_cat, 2,\
+                 nclusters_name_nopizza, max_features, cat_clusternames[jj], 'predicted_name', plotting_package, export_graph)
+    
+    # Update the nonpizza dataframe
+    nonpizza_df.update(target_product_names) 
+    
+    del target_product_cat, name_y_kmeans, name_clusternames, target_product_name
+```
+
+### Python scripts in functions/ directory
+
+The solution consists of 3 different python (.py) scripts
+
+1)	[clustering.py](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/functions/clustering.py): product_name and product_category_name columns of the original .csv file are pre-processed using nltk. PorterStemmer. Then the orders are manually split into pizza and non-pizza products, and 2 .plk files are created.
+
+2)	[data_preprocess.py](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/functions/data_preprocess.py): Uses the nonpizza.plk file. K-means clustering was conducted using the product_type_name. Then for the products in each initial cluster, clustering is applied again using the data in the product_name column. The results of each clustering are presented using pie charts. In total 30 product types where identified, with 15 different products for each type, resulting in the identification of 450 different non-pizza product names. The script exports the AnalysisNonPizza.csv file, which includes the product distribution per product category, alongside their average price and price range.
+
+3)	[plotting.py](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/functions/plotting.py): 
+Scipt includes 2 finctions: **matplotlib_pie_chart** and **plotly_pie_chart** that create pie charts using the **maplotlib** and **plotly** python packages respectively.
+
+```python
+def matplotlib_pie_chart(clusternames, product_distribution, plot_title, export_graph):
+    '''
+    Creates a pie chart to show the distribution of the various products
+    using matplotlib
+    '''
+    fig, ax = plt.subplots()
+    ax.pie( product_distribution, labels = clusternames, shadow=True, startangle=90)
+    ax.axis('equal')  
+    ax.set_title(plot_title)
+    plt.show()
+
+    if export_graph:
+        # export png
+        export_png(fig, plot_title)  
+
+    return fig
+```
+
+```python
+def plotly_pie_chart(clusternames, product_distribution, plot_title, export_graph):
+    '''
+    Creates a pie chart to show the distribution of the various products using Plotly
+    '''
+    fig = px.pie(values=product_distribution, names=clusternames, title=plot_title)
+    fig.show()
+    
+    if export_graph:
+        # export html
+        export_html(fig, plot_title)  
+    
+    return fig
+```
+Two additional functions **export_html** **export_png** export the plots lpcaly as **.html** and **.png**.
+
+
+Conducts a similar analysis using the pizza.plk file. Clustering is conducted only 2 times, once for the product_type_name (30 clusters) and once for the product_name (45 clusters). This script generates similar outputs with the previous NonPizzaClusterring.py. 
 
 4)	[FinalResults.py](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/FinalResults.py): Creates a final .csv file that is equal to the original dataset plus two columns, representing the Predicted Product Categories and Predicted Product Names.
 
-## Trends in the post-pocessed dataset, respones to 'customers'
+## Trends in the post-pocessed dataset
 
 ### Identifying the most popular products
 
@@ -79,5 +228,3 @@ Figure 8: Price range distribution for the 10 most common non-pizza product cate
 ![alt text](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/ProjectFigures/Figure9.png)
 
 Figure 9: Price range divided by average product category price for the 10 most common non-pizza product categories.
-
-

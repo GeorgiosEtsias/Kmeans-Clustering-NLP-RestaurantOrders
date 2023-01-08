@@ -37,7 +37,7 @@ def export_png(fig, plot_title):
     '''
     Save the matplotlib figure as a png
     '''
-    directory = 'png_figures/'
+    directory = 'figures/png_figures/'
     # check if the directory exists, if not create it
     if not os.path.exists(directory):
         os.makedirs(directory)
@@ -49,7 +49,7 @@ def export_html(fig, plot_title):
     '''
     Save the plotly figure  as an interactive html
     '''
-    directory = 'html_figures/'
+    directory = 'figures/html_figures/'
     # check if the directory exists, if not create it
     if not os.path.exists(directory):
         os.makedirs(directory)
@@ -61,7 +61,7 @@ def export_svg(fig, plot_title):
     '''
     Save the plotly figure  as an svg
     '''
-    directory = 'svg_figures/'
+    directory = 'figures/svg_figures/'
     # check if the directory exists, if not create it
     if not os.path.exists(directory):
         os.makedirs(directory)

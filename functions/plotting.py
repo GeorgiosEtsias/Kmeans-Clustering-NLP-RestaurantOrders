@@ -28,8 +28,8 @@ def plotly_pie_chart(clusternames, product_distribution, plot_title, export_grap
     fig.show()
     
     if export_graph:
-        # export html
-        export_html(fig, plot_title)  
+        # export svg
+        export_svg(fig, plot_title) 
     
     return fig
 
@@ -47,7 +47,7 @@ def export_png(fig, plot_title):
 
 def export_html(fig, plot_title):
     '''
-    Save the figure plotly as an interactive image file (html)
+    Save the plotly figure  as an interactive html
     '''
     directory = 'html_figures/'
     # check if the directory exists, if not create it
@@ -57,10 +57,15 @@ def export_html(fig, plot_title):
     figure_name = str(directory) + plot_title + '.html'   
     pio.write_html(fig, figure_name)
 
+def export_svg(fig, plot_title):
+    '''
+    Save the plotly figure  as an svg
+    '''
+    directory = 'svg_figures/'
+    # check if the directory exists, if not create it
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+    
+    figure_name = str(directory) + plot_title + '.svg'   
+    pio.write_image(fig, figure_name)
 
-
-
-directory = '/path/to/my/directory'
-
-if not os.path.exists(directory):
-    os.makedirs(directory)

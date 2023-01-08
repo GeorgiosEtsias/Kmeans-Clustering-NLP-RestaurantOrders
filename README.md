@@ -30,11 +30,14 @@ Libraries: numpy, pyplot, pandas, sklearn, nltk, plotly, matplolib
 ┌── ProjectFigures/
 │── data/
 │ └── orderItems.csv
+│── figures/
+│ │── html_figures/
+│ │── png_figures/
+│ └── svg_figures/
 │── functions/
 │ │── clustering.py
 │ │── data_preprocess.py
 │ └── plotting.py
-│── html_figures/
 │── python_environment_req/
 │ │──  myenv.yml
 │ └── requirements.txt
@@ -232,7 +235,12 @@ def plotly_pie_chart(clusternames, product_distribution, plot_title, export_grap
     
     return fig
 ```
-Two additional functions **export_html** **export_png** export the plots localy as **.html** and **.png**.
+Three additional functions **export_html**, **export_png** and **export_svg** export the plots localy as **.html**, **.png** and **.svg** respectively.
+
+![alt text](https://github.com/GeorgiosEtsias/Kmeans-Clustering-NLP-RestaurantOrders/blob/main/figures/png_figures/dessert.png)
+![alt text](https://github.com/GeorgiosEtsias/Kmeans-Clustering-NLP-RestaurantOrders/blob/main/figures/svg_figures/dessert.svg)
+
+Figure 1: A matplotlib-generated pie-chart (top) displaying the identified clusters of deserts vs the equivalent plotly-generated graph (bottom).
 
 ## Trends in the post-pocessed dataset
 
@@ -242,17 +250,17 @@ Two additional functions **export_html** **export_png** export the plots localy 
 
 ![alt text](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/ProjectFigures/Figure1.png)
 
-Figure 1: Distribution of various styles of pizzas.
+Figure 2: Distribution of various styles of pizzas.
 
 ![alt text](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/ProjectFigures/Figure2.png)
 
-Figure 2: Identifying the actual percentage of cheese pizzas.
+Figure 3: Identifying the actual percentage of cheese pizzas.
 
 The remaining 69.2 % of the orders were classified into 30 categories, as seen in Figure 3. Of these categories, appetizers were the most common products (18.22 %). An analysis of the individual products in each one of these 30 categories, was conducted in order to identify the most popular non-pizza product for each one. The results can be found on Table 1. 
 
 ![alt text](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/ProjectFigures/Figure3.png)
 
-Figure 3: Distribution of non-pizza products in categories.
+Figure 4: Distribution of non-pizza products in categories.
 
 In general, the distributions of orders, regarding both the pizza and non-pizza products was not surprising. As expected, NY style cheese pizza was the most popular product in general, while standard fast-food choices like mozzarella sticks, French fries, Caesar’s salad and sodas were also very common in the dataset.
 
@@ -266,25 +274,25 @@ Except for individual pizza slices, average pizza prices did not fluctuate that 
 
 ![alt text](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/ProjectFigures/Figure4.png)
 
-Figure 4: Average prices of the 10 most common pizza products.
+Figure 5: Average prices of the 10 most common pizza products.
 
 ![alt text](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/ProjectFigures/Figure5.png)
 
-Figure 5: Price range distribution of the 10 most common pizza products.
+Figure 6: Price range distribution of the 10 most common pizza products.
 
 ![alt text](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/ProjectFigures/Figure6.png)
 
-Figure 6: Price range divided by average product category price for the 10 most common pizza products.
+Figure 7: Price range divided by average product category price for the 10 most common pizza products.
 
 Regarding the non-pizza products, average price and price range distribution are presented in Figures 7 and 8 respectively. Taking into account the correlation between these two variables, it was established that vary little price variation exists on beverages, sandwiches and subs, while the profit margins are much greater for appetizers and salads. 
 ![alt text](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/ProjectFigures/Figure7.png)
 
-Figure 7: Average prices of the 10 most common pizza products.
+Figure 8: Average prices of the 10 most common pizza products.
 
 ![alt text](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/ProjectFigures/Figure8.png)
 
-Figure 8: Price range distribution for the 10 most common non-pizza product categories.
+Figure 9: Price range distribution for the 10 most common non-pizza product categories.
 
 ![alt text](https://github.com/GeorgiosEtsias/NLP-Clustering-RestaurantOrders/blob/main/ProjectFigures/Figure9.png)
 
-Figure 9: Price range divided by average product category price for the 10 most common non-pizza product categories.
+Figure 10: Price range divided by average product category price for the 10 most common non-pizza product categories.

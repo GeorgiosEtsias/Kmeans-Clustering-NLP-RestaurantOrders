@@ -13,7 +13,7 @@ Libraries: numpy, pyplot, pandas, sklearn, nltk, plotly, matplolib
 
 - [Machine learning approach](#machine-learning-approach)
 
-- [Source-code brealdown](#source-code-breakdown)
+- [Source-code breakdown](#source-code-breakdown)
 
      [main.py and main_notebook.ipynb](#mainpy-and-main_notebookipynb-scripts)
      
